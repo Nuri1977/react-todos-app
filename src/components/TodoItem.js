@@ -10,7 +10,12 @@ class TodoItem extends React.Component {
   }
 
   render() {
-    return <li>{this.props.todo.title}</li>;
+    return (
+      <li>
+        <input type="checkbox" checked={this.props.todo.comleted} onChange={() => this.props.handleChangeProps(this.props.todo.id)} />
+        {this.props.todo.title}
+      </li>
+    );
   }
 }
 
