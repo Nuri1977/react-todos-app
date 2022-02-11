@@ -1,8 +1,9 @@
 import './App.css';
+import TodoContainer from './components/TodoContainer';
 
 const App = () => (
   <div className="calculator">
-    <h1>React Template</h1>
+    <TodoContainer />
   </div>
 );
 
