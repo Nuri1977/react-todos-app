@@ -44,8 +44,8 @@ class TodoContainer extends Component {
     localStorage.setItem('todos', JSON.stringify(this.state.todos));
   };
 
-  delTodo = (id) => {
-    this.setState((prevState) => ({
+  delTodo = async (id) => {
+    await this.setState((prevState) => ({
       todos: prevState.todos.filter((todo) => todo.id !== id),
     }));
     localStorage.setItem('todos', JSON.stringify(this.state.todos));
