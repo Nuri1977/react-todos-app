@@ -10,24 +10,23 @@ class TodoContainer extends Component {
   constructor() {
     super();
     this.state = {
-      todos: [
-        {
-          id: uuidv4(),
-          title: 'Setup development environment',
-          completed: false,
-        },
-        {
-          id: uuidv4(),
-          title: 'Develop website and add content',
-          completed: false,
-        },
-        {
-          id: uuidv4(),
-          title: 'Deploy to live server',
-          completed: false,
-        },
-      ],
+      todos: [],
     };
+  }
+
+  componentDidMount() {
+    const StoreTodos = JSON.parse(localStorage.getItem('todos'));
+    if (StoreTodos) {
+      this.setState((pState) => ({
+        todos: [...pState.todos, ...StoreTodos],
+      }));
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if ((prevState.todos !== this.state.todos) && (this.state.todos.length !== 0)) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
   }
 
   handleChange = (id) => {
@@ -42,12 +41,14 @@ class TodoContainer extends Component {
         return todo;
       }),
     }));
+    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   };
 
   delTodo = (id) => {
     this.setState((prevState) => ({
       todos: prevState.todos.filter((todo) => todo.id !== id),
     }));
+    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   };
 
   addTodoItem = (title) => {
@@ -60,6 +61,7 @@ class TodoContainer extends Component {
     this.setState((pState) => ({
       todos: [...pState.todos, newTodo],
     }));
+    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   };
 
   setUpdate = (updatedTitle, id) => {
@@ -73,6 +75,7 @@ class TodoContainer extends Component {
         }),
       }
     ));
+    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   }
 
   render() {
