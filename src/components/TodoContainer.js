@@ -1,4 +1,4 @@
-/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -57,21 +57,36 @@ class TodoContainer extends Component {
       completed: false,
     };
 
-    this.setState({
-      todos: [...this.state.todos, newTodo],
-    });
+    this.setState((pState) => ({
+      todos: [...pState.todos, newTodo],
+    }));
   };
 
+  setUpdate = (updatedTitle, id) => {
+    this.setState((previosState) => (
+      {
+        todos: previosState.todos.map((todo) => {
+          if (todo.id === id) {
+            todo.title = updatedTitle;
+          }
+          return todo;
+        }),
+      }
+    ));
+  }
+
   render() {
+    const { todos } = this.state;
     return (
       <div className="container">
         <div className="inner">
           <Header />
           <InputTodo addTodoProps={this.addTodoItem} />
           <TodoList
-            todos={this.state.todos}
+            todos={todos}
             handleChangeProps={this.handleChange}
             deleteTodoProps={this.delTodo}
+            setUpdate={this.setUpdate}
           />
         </div>
       </div>
