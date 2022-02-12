@@ -24,7 +24,7 @@ class TodoContainer extends Component {
   }
 
   componentDidUpdate(prevState) {
-    if ((prevState.todos !== this.state.todos) && (this.state.todos.length !== 0)) {
+    if ((prevState.todos !== this.state.todos)) {
       localStorage.setItem('todos', JSON.stringify(this.state.todos));
     }
   }
@@ -41,14 +41,12 @@ class TodoContainer extends Component {
         return todo;
       }),
     }));
-    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   };
 
   delTodo = async (id) => {
     await this.setState((prevState) => ({
       todos: prevState.todos.filter((todo) => todo.id !== id),
     }));
-    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   };
 
   addTodoItem = (title) => {
@@ -61,7 +59,6 @@ class TodoContainer extends Component {
     this.setState((pState) => ({
       todos: [...pState.todos, newTodo],
     }));
-    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   };
 
   setUpdate = (updatedTitle, id) => {
@@ -75,7 +72,6 @@ class TodoContainer extends Component {
         }),
       }
     ));
-    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   }
 
   render() {
