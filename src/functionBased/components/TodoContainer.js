@@ -1,9 +1,13 @@
 /* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import InputTodo from './InputTodo';
 import TodoList from './TodoList';
+import About from '../pages/About';
+import NoMatch from '../pages/NoMatch';
+import Navbar from './Navbar';
 
 const TodoContainer = () => {
   function getInitialTodos() {
@@ -59,18 +63,31 @@ const TodoContainer = () => {
   };
 
   return (
-    <div className="container">
-      <div className="inner">
-        <Header />
-        <InputTodo addTodoProps={addTodoItem} />
-        <TodoList
-          todos={todos}
-          handleChangeProps={handleChange}
-          deleteTodoProps={delTodo}
-          setUpdate={setUpdate}
-        />
-      </div>
-    </div>
+    <>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <div className="container">
+            <div className="inner">
+              <Header />
+              <InputTodo addTodoProps={addTodoItem} />
+              <TodoList
+                todos={todos}
+                handleChangeProps={handleChange}
+                deleteTodoProps={delTodo}
+                setUpdate={setUpdate}
+              />
+            </div>
+          </div>
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="*">
+          <NoMatch />
+        </Route>
+      </Switch>
+    </>
   );
 };
 
