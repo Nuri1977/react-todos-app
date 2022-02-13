@@ -43,8 +43,8 @@ class TodoContainer extends Component {
     }));
   };
 
-  delTodo = async (id) => {
-    await this.setState((prevState) => ({
+  delTodo = (id) => {
+    this.setState((prevState) => ({
       todos: prevState.todos.filter((todo) => todo.id !== id),
     }));
   };
