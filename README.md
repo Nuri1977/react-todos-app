@@ -1,12 +1,18 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# MY TEMPLATE
+# TODOS LIST
 
-......................................................
+A Microverse projcect for learning REACT JS.
+
+![screenshot](./src/todo-react.jpg)
 
 ## Built With
 
 - ReactJS
+
+## Live Demo
+
+[Live Demo Link](https://nuri1977.github.io/react-todos-app/)
 
 ## Installation
 

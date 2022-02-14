@@ -2,7 +2,7 @@
   "name": "math-magicians",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nuri1977.github.io/react-todos-app/",
+  "homepage": "https://nuri1977.github.io/react-todos-app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
