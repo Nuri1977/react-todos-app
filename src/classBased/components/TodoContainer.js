@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TodoList from './TodoList';
@@ -24,8 +22,9 @@ class TodoContainer extends Component {
   }
 
   componentDidUpdate(prevState) {
-    if ((prevState.todos !== this.state.todos)) {
-      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    const { todos } = this.state;
+    if ((prevState.todos !== todos)) {
+      localStorage.setItem('todos', JSON.stringify(todos));
     }
   }
 
@@ -66,7 +65,8 @@ class TodoContainer extends Component {
       {
         todos: previosState.todos.map((todo) => {
           if (todo.id === id) {
-            todo.title = updatedTitle;
+            const item = todo;
+            item.title = updatedTitle;
           }
           return todo;
         }),

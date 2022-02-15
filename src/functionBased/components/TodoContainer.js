@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Route, Switch } from 'react-router-dom';
@@ -55,7 +54,8 @@ const TodoContainer = () => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
-          todo.title = updatedTitle;
+          const item = todo;
+          item.title = updatedTitle;
         }
         return todo;
       }),
